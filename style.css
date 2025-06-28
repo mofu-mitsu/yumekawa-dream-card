@@ -195,15 +195,16 @@ button:hover {
 
 .themes {
   display: flex;
-  flex-wrap: wrap; /* 2列に戻す */
+  flex-wrap: wrap; /* 2列配置 */
+  justify-content: center; /* 中央揃え */
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
 
 .themes label {
-  width: 160px; /* 幅を拡張 */
+  width: 170px; /* 幅を拡張 */
   height: 50px; /* 高さ固定 */
-  flex: 0 0 auto; /* 可変サイズ無効 */
+  flex-shrink: 0; /* 縮小防止 */
   background: #fff0f6;
   padding: 0.7rem 1rem;
   border-radius: 20px;
@@ -216,9 +217,8 @@ button:hover {
   gap: 0.5rem;
   transition: 0.2s;
   text-align: center;
-  writing-mode: horizontal-tb; /* 横書き */
-  font-size: 0.85rem; /* フォント小さめ */
-  white-space: normal; /* 折り返し許可 */
+  font-size: 0.8rem; /* フォント小さめ */
+  white-space: nowrap; /* 折り返し防止 */
 }
 
 .themes label:hover {
@@ -288,10 +288,13 @@ button:hover {
     max-width: 400px;
     min-height: 300px;
   }
+  .themes {
+    justify-content: center; /* スマホでも中央揃え */
+  }
   .themes label {
-    width: 140px; /* スマホで余裕を持たせる */
+    width: 150px; /* スマホで余裕を */
     height: 45px; /* 高さ調整 */
-    font-size: 0.8rem; /* フォントさらに小さく */
+    font-size: 0.75rem; /* フォントさらに小さく */
   }
 }
 
@@ -355,20 +358,4 @@ button:hover {
 @keyframes popIn {
   0% { transform: scale(0.9); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
-}
-
-.ad-footer::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(255,255,255,0.4) 10%, transparent 30%);
-  background-size: 50px 50px;
-  opacity: 0.5;
-  z-index: -1;
-}
-
-.ad-banner a img:hover {
-  transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 4px 12px rgba(255, 150, 200, 0.6);
 }
