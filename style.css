@@ -168,7 +168,16 @@ textarea {
   overflow: auto;
 }
 
-/* ボタンふわっと強化 */
+/* ボタン類 */
+.actions {
+  display: flex;
+  flex-wrap: wrap; /* ボタンを縦に並べる */
+  justify-content: center; /* 中央揃え */
+  gap: 1rem; /* ボタン間の間隔 */
+  margin: 1rem 0; /* 上下に余裕 */
+  min-height: 100px; /* スマホで最低限の縦幅 */
+}
+
 button {
   background: linear-gradient(to bottom, #ffd6ec, #ffaad4);
   color: #7d3747;
@@ -180,6 +189,7 @@ button {
   box-shadow: 0 4px 8px rgba(255, 150, 200, 0.4);
   transition: 0.3s ease-in-out;
   cursor: pointer;
+  margin-bottom: 0.5rem; /* ボタン間に余裕 */
 }
 
 button:hover {
@@ -232,6 +242,8 @@ button:hover {
   white-space: normal; /* 折り返し許可 */
   box-sizing: border-box; /* padding含む */
   overflow-wrap: anywhere; /* 文字折り返し */
+  /* 縦書きを防ぐ（必要なら有効化） */
+  /* writing-mode: horizontal-tb; */
 }
 
 .themes label:hover {
@@ -314,6 +326,13 @@ button:hover {
   }
   .themes input[type="radio"] {
     transform: scale(0.9); /* スマホで小さく */
+  }
+  .actions {
+    min-height: 120px; /* スマホでさらに余裕 */
+    gap: 0.8rem; /* 間隔微調整 */
+  }
+  button {
+    margin-bottom: 0.6rem; /* スマホでさらに間隔 */
   }
 }
 
