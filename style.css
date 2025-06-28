@@ -195,15 +195,14 @@ button:hover {
 
 .themes {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around; /* 均等配置 */
+  flex-wrap: wrap; /* 2列に戻す */
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
 
 .themes label {
-  width: 150px; /* 固定幅 */
-  height: 50px; /* 固定高さ */
+  width: 160px; /* 幅を拡張 */
+  height: 50px; /* 高さ固定 */
   flex: 0 0 auto; /* 可変サイズ無効 */
   background: #fff0f6;
   padding: 0.7rem 1rem;
@@ -217,8 +216,8 @@ button:hover {
   gap: 0.5rem;
   transition: 0.2s;
   text-align: center;
-  writing-mode: horizontal-tb; /* 横書き明示 */
-  font-size: 0.9rem; /* フォントサイズ調整 */
+  writing-mode: horizontal-tb; /* 横書き */
+  font-size: 0.85rem; /* フォント小さめ */
   white-space: normal; /* 折り返し許可 */
 }
 
@@ -256,7 +255,7 @@ button:hover {
   border-radius: 8px;
   display: inline-block;
   color: #feccee;
-  text-shadow: 1px 1px 2px #8e3c69;
+  text-shadow: 1px 1px 2px rgba(142, 60, 105, 0.6); /* 影を薄く */
 }
 
 .dream-card p {
@@ -265,7 +264,7 @@ button:hover {
   border-radius: 8px;
   margin: 0.5rem 0;
   color: #fdd8f2;
-  text-shadow: 1px 1px 2px #8e3c69;
+  text-shadow: 1px 1px 2px rgba(142, 60, 105, 0.8); /* 影を濃く */
 }
 
 .dream-card .mood {
@@ -273,6 +272,7 @@ button:hover {
   font-style: italic;
   opacity: 0.9;
   color: #ffe8f5;
+  text-shadow: 1px 1px 2px rgba(142, 60, 105, 0.8); /* 影を濃く */
 }
 
 /* 背景テーマ */
@@ -289,9 +289,9 @@ button:hover {
     min-height: 300px;
   }
   .themes label {
-    width: 130px; /* 少し余裕を */
-    height: 45px; /* 高さも微調整 */
-    font-size: 0.85rem; /* フォントサイズさらに小さく */
+    width: 140px; /* スマホで余裕を持たせる */
+    height: 45px; /* 高さ調整 */
+    font-size: 0.8rem; /* フォントさらに小さく */
   }
 }
 
@@ -355,4 +355,20 @@ button:hover {
 @keyframes popIn {
   0% { transform: scale(0.9); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
+}
+
+.ad-footer::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,255,255,0.4) 10%, transparent 30%);
+  background-size: 50px 50px;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.ad-banner a img:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 4px 12px rgba(255, 150, 200, 0.6);
 }
