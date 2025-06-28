@@ -196,15 +196,15 @@ button:hover {
 .themes {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around; /* 均等配置 */
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
 
 .themes label {
-  flex: 1 1 140px;
-  min-width: 140px;
-  max-width: 160px;
+  width: 150px; /* 固定幅 */
+  height: 50px; /* 固定高さ */
+  flex: 0 0 auto; /* 可変サイズを無効化 */
   background: #fff0f6;
   padding: 0.7rem 1rem;
   border-radius: 20px;
@@ -236,8 +236,8 @@ button:hover {
   margin: 2rem auto;
   padding: 1.5rem;
   border-radius: 20px;
-  background-color: transparent; /* ピンクの背景を削除 */
-  background-size: cover; /* coverに戻す */
+  background-color: transparent;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   color: #fff;
@@ -278,22 +278,27 @@ button:hover {
 .dream-card.theme3 { background-image: url("img/theme3.png"); }
 .dream-card.theme4 { background-image: url("img/theme4.png"); }
 
-/* スマホ用の調整（サイズを元に戻す） */
+/* スマホ用の調整 */
 @media screen and (max-width: 600px) {
   .dream-card {
     width: 90%;
-    max-width: 400px; /* 元のサイズに戻す */
-    min-height: 300px; /* 元のサイズに戻す */
+    max-width: 400px;
+    min-height: 300px;
+  }
+  .themes label {
+    width: 120px; /* スマホでは少し小さめ */
+    height: 40px; /* 高さも調整 */
+    font-size: 0.9rem; /* フォントサイズを小さく */
   }
 }
 
-/* 楽天アフィ用（ゆめかわ強化） */
+/* 楽天アフィ用 */
 .ad-footer {
-  background: linear-gradient(180deg, #fff0f7, #f9e4f0); /* ゆめかわグラデ */
+  background: linear-gradient(180deg, #fff0f7, #f9e4f0);
   padding: 20px;
   text-align: center;
   margin-top: 2rem;
-  border: 3px dashed #ffccd4; /* 点線ボーダー */
+  border: 3px dashed #ffccd4;
   border-radius: 20px;
   box-shadow: 0 4px 12px rgba(255, 182, 210, 0.3);
   animation: popIn 1.2s ease;
@@ -319,7 +324,7 @@ button:hover {
   height: 80px;
   object-fit: cover;
   border-radius: 8px;
-  border: 2px solid #ffddee; /* ゆめかわ枠 */
+  border: 2px solid #ffddee;
   transition: transform 0.3s ease;
 }
 
