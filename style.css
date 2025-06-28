@@ -202,22 +202,23 @@ button:hover {
 }
 
 .themes label {
-  width: 170px; /* 幅を拡張 */
+  width: 180px; /* 枠を広げる */
   height: 50px; /* 高さ固定 */
   flex-shrink: 0; /* 縮小防止 */
   background: #fff0f6;
-  padding: 0.7rem 1rem;
+  padding: 0.5rem 0.8rem; /* 余白を減らす */
   border-radius: 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   cursor: pointer;
   font-weight: bold;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  flex-direction: row; /* ラジオボタンと文字を横に */
+  align-items: center; /* 垂直中央揃え */
+  justify-content: flex-start; /* 左寄せ */
+  gap: 0.5rem; /* 間隔維持 */
   transition: 0.2s;
-  text-align: center;
-  font-size: 0.8rem; /* フォント小さめ */
+  text-align: left; /* 文字左揃え */
+  font-size: 0.75rem; /* フォント小さめ */
   white-space: nowrap; /* 折り返し防止 */
 }
 
@@ -227,7 +228,8 @@ button:hover {
 
 .themes input[type="radio"] {
   accent-color: #da83b5;
-  transform: scale(1.2);
+  transform: scale(1.1); /* サイズを少し小さく */
+  margin: 0; /* 余分なマージン削除 */
 }
 
 /* 夢カード */
@@ -292,9 +294,13 @@ button:hover {
     justify-content: center; /* スマホでも中央揃え */
   }
   .themes label {
-    width: 150px; /* スマホで余裕を */
+    width: 160px; /* スマホで余裕を */
     height: 45px; /* 高さ調整 */
-    font-size: 0.75rem; /* フォントさらに小さく */
+    font-size: 0.7rem; /* フォントさらに小さく */
+    padding: 0.4rem 0.6rem; /* スマホ用余白調整 */
+  }
+  .themes input[type="radio"] {
+    transform: scale(1.0); /* スマホでさらに小さく */
   }
 }
 
