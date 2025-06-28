@@ -195,28 +195,33 @@ button:hover {
 
 .themes {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around; /* 均等配置 */
+  flex-wrap: nowrap; /* 横並び */
+  overflow-x: auto; /* スマホでスクロール */
+  justify-content: flex-start; /* 左から並ぶ */
   gap: 1rem;
   margin-bottom: 1.5rem;
+  padding: 0.5rem;
+  -webkit-overflow-scrolling: touch; /* スムーズスクロール */
 }
 
 .themes label {
-  width: 150px; /* 固定幅 */
-  height: 50px; /* 固定高さ */
-  flex: 0 0 auto; /* 可変サイズを無効化 */
+  width: 170px; /* 幅を広げて文字を収める */
+  height: 50px;
+  flex: 0 0 auto;
   background: #fff0f6;
   padding: 0.7rem 1rem;
   border-radius: 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   cursor: pointer;
   font-weight: bold;
+  font-size: 0.85rem; /* フォントサイズを小さく */
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  transition: 0.2s;
   text-align: center;
+  word-wrap: break-word; /* テキスト折り返し */
+  white-space: normal; /* 折り返しを許可 */
+  transition: 0.2s;
 }
 
 .themes label:hover {
@@ -285,10 +290,13 @@ button:hover {
     max-width: 400px;
     min-height: 300px;
   }
+  .themes {
+    padding: 0.5rem 0;
+  }
   .themes label {
-    width: 120px; /* スマホでは少し小さめ */
-    height: 40px; /* 高さも調整 */
-    font-size: 0.9rem; /* フォントサイズを小さく */
+    width: 140px; /* スマホでは少し小さめ */
+    height: 40px;
+    font-size: 0.8rem; /* さらに小さく */
   }
 }
 
