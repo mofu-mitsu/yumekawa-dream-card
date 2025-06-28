@@ -202,36 +202,45 @@ button:hover {
 }
 
 .themes label {
-  width: 180px; /* 枠を広げる */
-  height: 50px; /* 高さ固定 */
-  flex-shrink: 0; /* 縮小防止 */
+  width: 180px;
+  height: 50px;
+  flex-shrink: 0;
   background: #fff0f6;
-  padding: 0.5rem 0.8rem; /* 余白を減らす */
+  padding: 0.5rem 0.8rem;
   border-radius: 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   cursor: pointer;
   font-weight: bold;
   display: flex;
-  flex-direction: row; /* ラジオボタンと文字を横に */
-  align-items: center; /* 垂直中央揃え */
-  justify-content: flex-start; /* 左寄せ */
-  gap: 0.5rem; /* 間隔維持 */
+  align-items: center;
+  gap: 0.5rem;
   transition: 0.2s;
-  text-align: left; /* 文字左揃え */
-  font-size: 0.75rem; /* フォント小さめ */
-  white-space: nowrap; /* 折り返し防止 */
-}
-
-.themes label:hover {
-  background: #f9d0e5;
+  text-align: left;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  white-space: normal; /* ←折り返しOKに */
+  box-sizing: border-box; /* ←padding含めてwidth制御 */
 }
 
 .themes input[type="radio"] {
   accent-color: #da83b5;
-  transform: scale(1.1); /* サイズを少し小さく */
-  margin: 0; /* 余分なマージン削除 */
+  transform: scale(1.1);
+  margin: 0;
+  flex-shrink: 0; /* ラジオボタンの縮小も防止 */
 }
 
+@media screen and (max-width: 600px) {
+  .themes label {
+    width: 160px;
+    height: auto; /* 高さ自動にすることで折り返し対応 */
+    font-size: 0.7rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .themes input[type="radio"] {
+    transform: scale(1.0);
+  }
+}
 /* 夢カード */
 .dream-card {
   width: 90%;
