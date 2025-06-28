@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>夢日記メーカー</title>
+  
+  <!-- 💫 Favicon（任意の画像に差し替えてね） -->
+  <link rel="icon" href="favicon.png" type="image/png">
+
+  <!-- 🧁 Googleフォント -->
+  <link href="https://fonts.googleapis.com/css2?family=Yomogi&display=swap" rel="stylesheet">
+  
+  <!-- 🌈 OGP・SNS用 -->
+  <meta property="og:title" content="夢日記メーカー" />
+  <meta property="og:description" content="ふわふわの夢を、画像にして保存しよう🌙" />
+  <meta property="og:image" content="https://example.com/ogp-image.png" />
+  <meta property="og:url" content="https://example.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="夢日記メーカー" />
+  
+  <!-- 🐦 Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="夢日記メーカー" />
+  <meta name="twitter:description" content="ふわふわの夢を、画像にして保存しよう🌙" />
+  <meta name="twitter:image" content="https://example.com/ogp-image.png" />
+
+  <!-- 🎀 CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <!-- 以下は元のコードと同じ -->
+    <div class="title-wrap">
+      <h1>夢日記メーカー</h1>
+    </div>
+
+    <!-- テーマ選択 -->
+    <section class="theme-select">
+      <h2>背景テーマを選んでね</h2>
+      <div class="themes">
+        <label><input type="radio" name="theme" value="theme1" checked> パステル雲</label>
+        <label><input type="radio" name="theme" value="theme2"> 星空</label>
+        <label><input type="radio" name="theme" value="theme3"> うさぎと月</label>
+        <label><input type="radio" name="theme" value="theme4"> ふんわり夜空</label>
+      </div>
+    </section>
+
+    <!-- 入力フォーム -->
+    <section class="dream-form">
+      <label>タイトル：<input type="text" id="dream-title" placeholder="例：愛犬が帰ってきた日"></label><br>
+      <label>夢の内容：<textarea id="dream-content" placeholder="どんな夢だったか書いてね"></textarea></label><br>
+      <label>気分：<input type="text" id="dream-mood" placeholder="例：懐かしくてあたたかい"></label>
+    </section>
+
+    <!-- ボタン類 -->
+    <div class="actions">
+      <button id="generate-image">画像をつくる</button>
+      <button id="download-image" style="display:none;">画像をダウンロード</button>
+      <button id="share-button" style="display:none;">画像を共有</button>
+    </div>
+
+    <!-- プレビュー表示 -->
+    <section class="preview-area" id="preview">
+      <div id="dreamCard" class="dream-card theme1">
+        <h3 id="preview-title">タイトルがここに表示されます</h3>
+        <p id="preview-content">夢の内容がここに表示されます</p>
+        <p id="preview-mood">気分：ここに気分が表示されます</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- 背景装飾 -->
+  <div class="fluffy-bg"></div>
+  <div class="bubble-wrapper">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
+  <!-- スクリプト読み込み -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

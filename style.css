@@ -1,0 +1,294 @@
+body {
+  font-family: 'Yomogi', 'Noto Sans JP', sans-serif;
+  color: #7a4d6a;
+  margin: 0;
+  padding: 2rem;
+  text-align: center;
+  animation: fadeIn 1.5s ease-in-out;
+  /* 背景はfluffy-bgに任せて削除！ */
+  background: none;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+#preview-content {
+  white-space: pre-wrap; /* 改行とスペースを保持 */
+  word-wrap: break-word; /* 長い単語も折り返し */
+  max-height: 200px; /* 必要なら高さ制限 */
+  overflow-y: auto; /* 溢れたらスクロール */
+}
+#preview {
+  position: relative;
+}
+/* ✨ フェードインアニメーション */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 🫧 シャボン玉ふわふわ */
+.bubble-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 182, 210, 0.5), rgba(255, 255, 255, 0.3));
+  border: 1px solid rgba(255, 182, 210, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 200, 230, 0.5), 0 0 12px rgba(255, 220, 245, 0.4);
+  animation: floatBubble 15s linear infinite;
+  opacity: 0.9;
+  backdrop-filter: blur(2px);
+}
+
+/* ランダムな位置と大きさを調整（必要に応じて増やしてOK） */
+.bubble:nth-child(1) { left: 10%; width: 20px; height: 20px; animation-delay: 0s; }
+.bubble:nth-child(2) { left: 30%; width: 25px; height: 25px; animation-delay: 3s; }
+.bubble:nth-child(3) { left: 50%; width: 18px; height: 18px; animation-delay: 6s; }
+.bubble:nth-child(4) { left: 70%; width: 22px; height: 22px; animation-delay: 9s; }
+.bubble:nth-child(5) { left: 85%; width: 28px; height: 28px; animation-delay: 1.5s; }
+.bubble:nth-child(6) { left: 20%; width: 16px; height: 16px; animation-delay: 5s; }
+.bubble:nth-child(7) { left: 60%; width: 30px; height: 30px; animation-delay: 7s; }
+.bubble:nth-child(8) { left: 90%; width: 24px; height: 24px; animation-delay: 2s; }
+
+@keyframes floatBubble {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-120vh) scale(1.3);
+    opacity: 0;
+  }
+}
+
+.fluffy-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    #fff0f7 0%,
+    #e8f8ff 20%,
+    #ffe8f3 40%,
+    #d6f5ff 60%,
+    #fcd6ec 80%,
+    #ffffff 100%
+  );
+  background-size: 100% 400%;
+  animation: gradientFloat 12s ease infinite;
+  opacity: 0.7;
+}
+.fluffy-bg::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.6) 20%, transparent 70%),
+                    radial-gradient(circle, rgba(255,240,250,0.5) 15%, transparent 60%);
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  animation: cloudDrift 15s linear infinite;
+  opacity: 0.7;
+}
+@keyframes cloudDrift {
+  from { background-position: 0 0; }
+  to { background-position: 200% 200%; }
+}
+/* 🌸 タイトル囲いふんわり強化済み */
+.title-wrap {
+  background: radial-gradient(circle at top left, #ffe6f3, #fff0f8 60%, #ffffff);
+  padding: 1.5rem 2rem;
+  border-radius: 40px;
+  box-shadow: 0 10px 20px rgba(255, 195, 225, 0.4),
+              0 0 30px rgba(255, 200, 235, 0.3);
+  display: inline-block;
+  margin: 2rem auto 1.5rem;
+  animation: popIn 1.2s ease;
+  border: 3px dashed #ffccd4;
+  transition: 0.3s ease-in-out;
+}
+
+.title-wrap:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 25px rgba(255, 180, 220, 0.5);
+}
+
+.title-wrap h1 {
+  font-size: 2.4rem;
+  color: #da89b7;
+  margin: 0;
+  text-shadow: 1px 1px 2px #fce4ef;
+}
+
+/* 💬 フォームのラベル */
+label {
+  display: inline-block;
+  vertical-align: top;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  color: #b06d94;
+}
+
+/* 入力欄ふわもこ強化 */
+input, textarea, select {
+  font-family: 'Yomogi', sans-serif;
+  padding: 0.6rem;
+  border-radius: 12px;
+  border: 1px solid #e7bfd1;
+  margin: 0.5rem 0;
+  width: 90%;
+  max-width: 400px;
+  box-sizing: border-box;
+  background: #fff7fc;
+  color: #6d4963;
+  box-shadow: 0 2px 6px rgba(255, 182, 210, 0.3);
+}
+
+/* テキストエリアの点々非表示 */
+textarea {
+  resize: none;
+  overflow: auto;
+}
+
+/* 🌟 ボタンふわっと強化 */
+button {
+  background: linear-gradient(to bottom, #ffd6ec, #ffaad4);
+  color: #7d3747;
+  font-weight: bold;
+  font-family: 'Yomogi', sans-serif;
+  padding: 0.8em 2em;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(255, 150, 200, 0.4);
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+button:hover {
+  background: linear-gradient(to bottom, #ffaad4, #ffd6ec);
+  transform: scale(1.05);
+}
+
+/* 🌈 テーマ選択 */
+.theme-select h2 {
+  font-size: 1.3rem;
+  color: #aa6c98;
+  margin-bottom: 0.5rem;
+}
+
+.themes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.themes label {
+  flex: 1 1 140px;
+  min-width: 140px;
+  max-width: 160px;
+  background: #fff0f6;
+  padding: 0.7rem 1rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: 0.2s;
+  text-align: center;
+}
+
+.themes label:hover {
+  background: #f9d0e5;
+}
+
+.themes input[type="radio"] {
+  accent-color: #da83b5;
+  transform: scale(1.2);
+}
+
+/* 🌙 夢カード */
+.dream-card {
+  width: 90%;
+  max-width: 400px;
+  min-height: 300px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: 20px;
+  background-color: #ffddee; /* ← fallback色を明示的に入れてみて！ */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  position: relative;
+  overflow: hidden; /* ← 念のため！ */
+}
+
+.dream-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  background-color: rgba(255,255,255,0.3);
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  display: inline-block;
+  color: #feccee;
+  text-shadow: 1px 1px 2px #8e3c69;
+}
+
+.dream-card p {
+  background-color: rgba(255,255,255,0.2);
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin: 0.5rem 0;
+  color: #fdd8f2;
+  text-shadow: 1px 1px 2px #8e3c69;
+}
+
+.dream-card .mood {
+  margin-top: 1rem;
+  font-style: italic;
+  opacity: 0.9;
+  color: #ffe8f5;
+}
+
+/* 背景テーマ */
+.dream-card.theme1 { background-image: url("img/theme1.png"); }
+.dream-card.theme2 { background-image: url("img/theme2.png"); }
+.dream-card.theme3 { background-image: url("img/theme3.png"); }
+.dream-card.theme4 { background-image: url("img/theme4.png"); }
+
+/* 💫 ふんわりアニメーション */
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* 🎀 タイトルふわっとアニメ */
+@keyframes popIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
