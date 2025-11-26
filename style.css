@@ -268,6 +268,8 @@ button:hover {
   margin: 2rem auto;
   padding: 60px 40px 80px !important;    /* 上下余裕たっぷり */
   border-radius: 28px;
+  background-repeat: repeat-y !important;
+  background-size: 100% auto !important;
   box-shadow: 0 20px 50px rgba(0,0,0,0.3);
   
   /* ★★★★★ ここが変わった！背景を縦リピートに！ ★★★★★ */
@@ -296,6 +298,8 @@ button:hover {
   border-radius: 14px;
   margin: 1.2rem 0;
   color: #fff;
+  max-height: none !important;
+  overflow: visible !important;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
 }
 
