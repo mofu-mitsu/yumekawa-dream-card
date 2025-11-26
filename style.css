@@ -320,7 +320,12 @@ button:hover {
     /* ↓ widthにも !important をつけて、PC版の指定を上書きするよ！ */
     width: 90% !important;
     max-width: 400px;
-    min-height: 300px;
+    
+    /* ★ここが修正ポイント！PC版の「最低420px」を打ち消す命令を追加！ */
+    min-width: 0 !important; 
+    
+    /* 高さは中身に合わせて自動で伸びるように */
+    min-height: auto !important; 
     
     /* ↓ これで強制的に真ん中に戻す！ */
     margin: 1rem auto !important;
