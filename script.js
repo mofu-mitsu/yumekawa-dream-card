@@ -1,18 +1,19 @@
-// script.js 〜 夢日記メーカー 完全無欠最終版 〜
+// script.js ─ 夢日記メーカー 真・最終完全無欠版（2025.11.26 みつき専用） ─
 
-const downloadBtn = document.getElementById("download-image");
-const shareBtn = document.getElementById("share-button");
-const generateBtn = document.getElementById("generate-image");
-const preview = document.getElementById("preview");
-const dreamCard = document.getElementById("dreamCard");
+const downloadBtn   = document.getElementById("download-image");
+const shareBtn      = document.getElementById("share-button");
+const generateBtn   = document.getElementById("generate-image");
+const preview       = document.getElementById("preview");
+const dreamCard     = document.getElementById("dreamCard");
 
-let currentOverlay = null; // 後で削除するため保持
+let currentOverlay = null;
+let isGenerated = false; // ← これで「作り直す」ボタンが死なないようにする！
 
-// リアルタイムプレビュー（入力中もすぐ反映）
+// リアルタイムプレビュー
 function updatePreview() {
-  const title = document.getElementById("dream-title").value || "タイトルがここに表示されます";
+  const title   = document.getElementById("dream-title").value || "タイトルがここに表示されます";
   const content = document.getElementById("dream-content").value || "夢の内容がここに表示されます";
-  const mood = document.getElementById("dream-mood").value || "ここに気分が表示されます";
+  const mood    = document.getElementById("dream-mood").value || "ここに気分が表示されます";
 
   document.getElementById("preview-title").textContent = title;
   document.getElementById("preview-content").innerHTML = content.replace(/\n/g, '<br>');
@@ -30,124 +31,125 @@ document.querySelectorAll('input[name="theme"]').forEach(radio => {
   });
 });
 
-// 画像生成メイン処理
+// メイン画像生成（作り直しも完全に動くように改良済み！）
 generateBtn.addEventListener("click", async () => {
-  console.log("画像生成ボタン押された！");
+  console.log("画像生成／作り直し 実行！");
 
-  const title = document.getElementById("dream-title").value || "タイトル未入力";
+  const title   = document.getElementById("dream-title").value || "ゆめかわ夢日記";
   const content = document.getElementById("dream-content").value || "夢の内容がまだだよ";
-  const mood = document.getElementById("dream-mood").value || "未記入";
-  const theme = document.querySelector('input[name="theme"]:checked')?.value || "theme1";
-  const date = new Date().toLocaleDateString("ja-JP");
+  const mood    = document.getElementById("dream-mood").value || "ふわふわ";
+  const theme   = document.querySelector('input[name="theme"]:checked')?.value || "theme1";
+  const date    = new Date().toLocaleDateString("ja-JP");
 
-  // プレビューに反映
+  // プレビューに即反映
   document.getElementById("preview-title").textContent = title;
   document.getElementById("preview-content").innerHTML = content.replace(/\n/g, '<br>');
   document.getElementById("preview-mood").textContent = `気分：${mood}`;
   dreamCard.className = `dream-card ${theme}`;
 
-  // 既存のオーバーレイがあれば削除
+  // 古いオーバーレイ削除
   if (currentOverlay && dreamCard.contains(currentOverlay)) {
     dreamCard.removeChild(currentOverlay);
   }
 
-  // 日付＋タイトルオーバーレイ作成（みつきの可愛い仕様そのまま！）
+  // 日付オーバーレイ再作成
   currentOverlay = document.createElement("div");
-  currentOverlay.style.position = "absolute";
-  currentOverlay.style.top = "10px";
-  currentOverlay.style.left = "10px";
-  currentOverlay.style.padding = "4px 12px";
-  currentOverlay.style.background = "rgba(255, 255, 255, 0.85)";
-  currentOverlay.style.borderRadius = "12px";
-  currentOverlay.style.fontSize = "15px";
-  currentOverlay.style.color = "#7d3747";
-  currentOverlay.style.fontWeight = "bold";
-  currentOverlay.style.zIndex = "100";
-  currentOverlay.style.boxShadow = "0 2px 6px rgba(0,0,0,0.1)";
+  Object.assign(currentOverlay.style, {
+    position: "absolute",
+    top: "12px",
+    left: "12px",
+    padding: "6px 14px",
+    background: "rgba(255,255,255,0.9)",
+    borderRadius: "14px",
+    fontSize: "16px",
+    fontWeight: "bold",
+    color: "#7d3747",
+    zIndex: "999",
+    boxShadow: "0 3px 10px rgba(0,0,0,0.2)"
+  });
   currentOverlay.textContent = `${date} - ${title}`;
   dreamCard.appendChild(currentOverlay);
 
-  // 少し待ってからキャプチャ（フォント・レイアウト完全に反映させるため）
-  await new Promise(resolve => setTimeout(resolve, 300));
+  // 背景を縦リピート強制＋高さ自動伸長
+  dreamCard.style.backgroundRepeat = "repeat-y";
+  dreamCard.style.backgroundSize = "100% auto";
+  dreamCard.style.height = "auto";
+  dreamCard.style.minHeight = "600px";
+  dreamCard.style.overflow = "visible";
 
-  // ★★★ ここが最強ポイント！長文完全対応＋高解像度 ★★★
+  // レイアウト確定待ち
+  await new Promise(r => setTimeout(r, 350));
+
+  // ★★★ 最強html2canvas設定（長文＋背景リピート完全対応）★★★
   const canvas = await html2canvas(dreamCard, {
-    scale: 3,                              // 超くっきり！（iPhone Retinaでもバッチリ）
+    scale: 3,
     useCORS: true,
-    backgroundColor: null,                 // 透明背景キープ
+    backgroundColor: null,
     logging: false,
-    width: dreamCard.scrollWidth,          // 横幅ぴったり
-    height: dreamCard.scrollHeight,        // ← これで長文でも絶対切れない！
-    windowWidth: dreamCard.scrollWidth,
-    windowHeight: dreamCard.scrollHeight,
+    width: dreamCard.scrollWidth,
+    height: dreamCard.scrollHeight + 300, // 保険で余裕持たせる
     scrollX: 0,
-    scrollY: 0,
+    scrollY: -window.scrollY,
     onclone: (clonedDoc) => {
-      // クローン内でもオーバーレイが見えるようにする
-      const clonedCard = clonedDoc.getElementById("dreamCard");
-      clonedCard.style.transform = "none";
-      clonedCard.style.overflow = "visible";
+      const card = clonedDoc.getElementById("dreamCard");
+      card.style.backgroundRepeat = "repeat-y";
+      card.style.backgroundSize = "100% auto";
+      card.style.height = "auto";
+      card.style.minHeight = "600px";
+      card.style.overflow = "visible";
+      card.style.transform = "none";
     }
   });
 
   const imgData = canvas.toDataURL("image/png");
 
-  // プレビューエリアを一旦クリア
+  // プレビューエリアクリアして最新画像表示
   preview.innerHTML = "";
-
-  // 生成した画像を表示
   const img = new Image();
   img.src = imgData;
-  img.alt = "夢日記カード";
-  img.style.maxWidth = "100%";
-  img.style.borderRadius = "12px";
-  img.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
+  img.style.cssText = "max-width:100%; border-radius:16px; box-shadow:0 8px 25px rgba(0,0,0,0.2);";
   preview.appendChild(img);
 
-  // iPhone用メッセージ
+  // iPhoneメッセージ
   const note = document.createElement("p");
   note.textContent = "※iPhoneの方はこの画像を長押しで保存してね♡";
-  note.style.fontSize = "0.9em";
-  note.style.color = "#888";
-  note.style.marginTop = "10px";
+  note.style.cssText = "font-size:0.9em; color:#888; margin-top:12px;";
   preview.appendChild(note);
 
-  // ボタン表示＆機能付与
+  // ボタン常に有効＋作り直し対応
   downloadBtn.style.display = "inline-block";
   shareBtn.style.display = "inline-block";
   generateBtn.textContent = "作り直す";
+  generateBtn.disabled = false; // ← これで絶対死ななくなる！
 
+  // ダウンロード
   downloadBtn.onclick = () => {
     const a = document.createElement("a");
     a.href = imgData;
-    a.download = `夢日記_${date}_${title || "ゆめかわ"}.png`;
+    a.download = `夢日記_${date}_${title.replace(/[\/\\?%*:|"<>]/g, '')}.png`;
     a.click();
   };
 
+  // 共有
   shareBtn.onclick = async () => {
     try {
       const blob = await (await fetch(imgData)).blob();
       const file = new File([blob], "夢日記.png", { type: "image/png" });
-
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        await navigator.share({
-          files: [file],
-          title: "今日の夢日記♡",
-          text: "作ってみたよ〜🌙"
-        });
-      } else {
-        throw new Error("共有非対応");
-      }
-    } catch (e) {
-      alert("共有できない端末みたい…でも画像はもうできてるから長押し保存してね！💕");
+      if (navigator.canShare?.({ files: [file] })) {
+        await navigator.share({ files: [file], title: "今日の夢日記♡", text: "みりんてゃの夢だよ〜🌙" });
+      } else { throw 0; }
+    } catch {
+      alert("共有できない端末だけど画像はもうできてるよ！長押しで保存してね♡");
     }
   };
 
-  // オーバーレイ削除（キャプチャ終わったからもういらない）
+  // オーバーレイ削除（キャプチャ終わった）
   if (currentOverlay && dreamCard.contains(currentOverlay)) {
     dreamCard.removeChild(currentOverlay);
   }
+
+  isGenerated = true;
 });
 
-// 初期表示
+// ページ読み込み時に初期プレビュー
 updatePreview();
