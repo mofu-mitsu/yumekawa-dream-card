@@ -258,15 +258,18 @@ button:hover {
   display: inline-block; /* インライン表示 */
 }
 
-/* ★★★★★ ここから神修正 ★★★★★ */
+/* ★★★★★ ここから神修正（PCズレ直し版） ★★★★★ */
 .dream-card {
   position: relative;
-  width: 420px !important;           /* 横幅完全固定で4文字病完全根絶 */
+  width: 420px !important;           /* 横幅完全固定 */
   max-width: 420px !important;
   min-width: 420px !important;
   min-height: 600px;
   height: auto !important;
-  margin: 2rem auto !important;
+  
+  /* ↓ margin: auto だけで真ん中寄せできるから、left/transformは削除！ */
+  margin: 2rem auto !important; 
+  
   padding: 70px 45px 100px !important;
   background-repeat: repeat-y !important;
   background-size: 100% auto !important;
@@ -277,8 +280,8 @@ button:hover {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
+  
+  /* ここにあった left: 50% と transform は消したよ！ */
 }
 
 #preview-content {
