@@ -33,6 +33,7 @@ document.querySelectorAll('input[name="theme"]').forEach(radio => {
 
 // 画像生成（作り直し何回でもOK）
 generateBtn.addEventListener("click", async () => {
+  const date = new Date().toLocaleDateString("ja-JP");
   // ボタンを即座に「作り直す」に変更（disabledは絶対にかけない！）
   generateBtn.textContent = "生成中…";
   generateBtn.disabled = true;
