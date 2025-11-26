@@ -298,6 +298,9 @@ button:hover {
   text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
   max-height: none !important;
   overflow: visible !important;
+  
+  /* ★追加！これで文字が左詰めになって、右の余白を埋めてくれるよ！ */
+  text-align: left; 
 }
 
 /* スクロール全部殺す */
@@ -317,22 +320,18 @@ button:hover {
 /* スマホ用の調整 */
 @media screen and (max-width: 600px) {
   .dream-card {
-    /* ↓ widthにも !important をつけて、PC版の指定を上書きするよ！ */
     width: 90% !important;
     max-width: 400px;
-    
-    /* ★ここが修正ポイント！PC版の「最低420px」を打ち消す命令を追加！ */
-    min-width: 0 !important; 
-    
-    /* 高さは中身に合わせて自動で伸びるように */
-    min-height: auto !important; 
-    
-    /* ↓ これで強制的に真ん中に戻す！ */
+    min-width: 0 !important;
+    min-height: auto !important;
     margin: 1rem auto !important;
     left: auto !important;
     transform: none !important;
+    
+    /* ★修正！左右の余白を45px→25pxに減らして、文字スペース確保！ */
+    padding: 70px 25px 100px !important;
   }
-
+  
   .themes {
     justify-content: center;
   }
