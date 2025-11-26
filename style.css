@@ -317,27 +317,34 @@ button:hover {
 /* スマホ用の調整 */
 @media screen and (max-width: 600px) {
   .dream-card {
-    width: 90%;
+    /* ↓ widthにも !important をつけて、PC版の指定を上書きするよ！ */
+    width: 90% !important;
     max-width: 400px;
     min-height: 300px;
+    
+    /* ↓ これで強制的に真ん中に戻す！ */
+    margin: 1rem auto !important;
+    left: auto !important;
+    transform: none !important;
   }
+
   .themes {
-    justify-content: center; /* スマホでも中央揃え */
+    justify-content: center;
   }
   .themes label {
-    width: 150px; /* スマホ用幅 */
-    font-size: 0.7rem; /* フォント小さめ */
-    padding: 0.5rem; /* スマホ用余白 */
+    width: 150px;
+    font-size: 0.7rem;
+    padding: 0.5rem;
   }
   .themes input[type="radio"] {
-    transform: scale(0.9); /* スマホで小さく */
+    transform: scale(0.9);
   }
   .actions {
-    min-height: 120px; /* スマホでさらに余裕 */
-    gap: 0.8rem; /* 間隔微調整 */
+    min-height: 120px;
+    gap: 0.8rem;
   }
   button {
-    margin-bottom: 0.6rem; /* スマホでさらに間隔 */
+    margin-bottom: 0.6rem;
   }
 }
 
