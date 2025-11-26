@@ -142,7 +142,7 @@ generateBtn.addEventListener("click", async () => {
             card.style.height = "auto";
             card.style.backgroundRepeat = "repeat-y";
             card.style.backgroundSize = "100% auto";
-            card.style.padding = "70px 45px 90px";
+            card.style.padding = "70px 25px 90px";
         }
       }
     });
