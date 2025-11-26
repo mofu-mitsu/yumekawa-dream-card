@@ -258,53 +258,45 @@ button:hover {
   display: inline-block; /* インライン表示 */
 }
 
-/* 夢カード ← これが神 */
+/* ★★★★★ ここから神修正 ★★★★★ */
 .dream-card {
   position: relative;
-  width: 90%;
-  max-width: 420px;
-  min-height: 600px;                    /* 最低でもこの高さ */
+  width: 420px !important;           /* 横幅完全固定で4文字病完全根絶 */
+  max-width: 420px !important;
+  min-width: 420px !important;
+  min-height: 600px;
   height: auto !important;
-  margin: 2rem auto;
-  padding: 60px 40px 80px !important;    /* 上下余裕たっぷり */
-  border-radius: 28px;
+  margin: 2rem auto !important;
+  padding: 70px 45px 100px !important;
   background-repeat: repeat-y !important;
   background-size: 100% auto !important;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-  
-  /* ★★★★★ ここが変わった！背景を縦リピートに！ ★★★★★ */
-  background-repeat: repeat-y !important;     /* 縦にだけ繰り返し */
-  background-size: 100% auto !important;      /* 横幅100%、縦は自動 */
   background-position: top center !important;
-  
+  border-radius: 28px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
   overflow: visible !important;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
 
-/* プレビュー時のスクロール完全禁止（これが悪者だった） */
 #preview-content {
-  max-height: none !important;     /* ← これ消さないと永遠に見切れる */
-  overflow: visible !important;
-  height: auto !important;
   flex: 1;
   white-space: pre-wrap;
   word-break: break-word;
   line-height: 1.9;
   font-size: 1.1rem;
   background: rgba(255,255,255,0.28);
-  padding: 1.2rem;
-  border-radius: 14px;
+  padding: 1.3rem;
+  border-radius: 16px;
   margin: 1.2rem 0;
   color: #fff;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
   max-height: none !important;
   overflow: visible !important;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
 }
 
-/* 全体のプレビューエリアも縛りを全部殺す */
-#preview,
+/* スクロール全部殺す */
+#preview-content,
 .dream-card,
 .dream-card * {
   max-height: none !important;
