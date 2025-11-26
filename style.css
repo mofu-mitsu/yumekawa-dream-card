@@ -277,6 +277,8 @@ button:hover {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
 }
 
 #preview-content {
