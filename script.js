@@ -40,9 +40,10 @@ generateBtn.addEventListener("click", async () => {
   const title   = document.getElementById("dream-title").value || "ゆめかわ夢日記";
   const content = document.getElementById("dream-content").value || "夢の内容";
   const mood    = document.getElementById("dream-mood").value || "ふわふわ";
+  
+  const checkedTheme = document.querySelector('input[name="theme"]:checked');
   const theme   = checkedTheme ? checkedTheme.value : "theme1";
-  const date    = new Date().toLocaleDateString("ja-JP");
-
+  
   // プレビュー反映
   document.getElementById("preview-title").textContent = title;
   document.getElementById("preview-content").innerHTML = content.replace(/\n/g, '<br>');
