@@ -151,7 +151,7 @@ generateBtn.addEventListener("click", async () => {
 
     // プレビューエリアを「生成された画像」に置き換える
     preview.innerHTML = `
-      <img src="${imgData}" style="max-width:100%; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+      <img src="${imgData}" style="width: 420px; max-width: 100%; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,0.3);">
       <p style="font-size:0.9em;color:#888;margin-top:12px;">※iPhoneの方はこの画像を長押しで保存してね♡</p>
     `;
 
